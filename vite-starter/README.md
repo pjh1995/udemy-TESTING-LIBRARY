@@ -125,7 +125,7 @@ npm test
     - [query methods](https://testing-library.com/docs/queries/about/#priority)
     - getByRole
       - [role 리스트](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques#roles)
-      - name 옵션: aria-label, aria-labelledby, 내부 텍스트 콘텐츠를 기준으로 필터링
+      - name 옵션: image의 alt, aria-label, aria-labelledby, 내부 텍스트 콘텐츠를 기준으로 필터링
   - describe : group test를 위한 함수
   - unit test
   - [잘못된 추상화보다는 복제를 선호](https://kentcdodds.com/blog/avoid-nesting-when-youre-testing)
@@ -137,8 +137,10 @@ npm test
     - fireEvent는 이벤트를 세부적으로 제어할 수 있는 기능을 제공합니다. (ex. 개발자 도구의 force element state)
     - userEvent는 더 높은 수준의 API로, 사용자의 실제 동작을 시뮬레이션하는 데 중점을 둡니다.
   - userEvent
-    - user 인스턴스의 생성이 필요함 `user = userEvent.setup()`
-    - 해당 user로 가져온 모든 메서드는 promise를 반환한다. `await user.click(checkboxEl);`
+    - user 인스턴스의 생성이 필요함
+      `user = userEvent.setup()`
+    - 해당 user로 가져온 모든 메서드는 promise를 반환한다.
+      `await user.click(checkboxEl);`
   - 사용한 methods
     - user.hover
     - user.unhover
@@ -147,4 +149,15 @@ npm test
     - toBeInTheDocuement: 특정 요소가 문서 내에 존재하는지를 확인
 
 - Section 5
+
   - msw: Mock Service Worker의 약자로, 네트워크 요청을 가로채고 모킹(Mocking)하는 도구입니다
+  - 디버깅에 유용한 점
+
+    - 변경시 영향을 받는 파일의 test만 실행한다.
+    - p 옵션으로 원하는 파일만 필터링 가능.
+    - test.only : 하나의 테스트 파일에 여러 테스트가 있는 경우 이 옵션을 사용하면 나머지는 다 건너뜀.
+    - logRoles: 특정 DOM 컨테이너의 접근성 역할을 콘솔에 출력함
+
+      `const {container} = render(<TestComponent />);`
+
+      `logRoles(container)`

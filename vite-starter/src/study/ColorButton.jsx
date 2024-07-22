@@ -7,7 +7,6 @@ function ColorButton() {
   const [checked, setChecked] = React.useState(false);
 
   const nextColor = color === 'medium-violet-red' ? 'midnight-blue' : 'medium-violet-red';
-  const className = checked ? 'grey' : color;
 
   const changeColor = () => {
     setColor(nextColor);
@@ -19,14 +18,13 @@ function ColorButton() {
   };
   return (
     <div>
-      <button className={className} onClick={changeColor} disabled={checked}>
+      <button className={checked ? 'grey' : color} onClick={changeColor} disabled={checked}>
         Change to {kebabToTitle(nextColor)}
       </button>
       <br />
       <input
         type="checkbox"
         id="disable-button-checkbox"
-        defaultChecked={false}
         checked={checked}
         onChange={toggleCheckbox}
       />
